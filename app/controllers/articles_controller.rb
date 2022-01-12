@@ -1,7 +1,11 @@
 # Controller - class that is defined to inherit from ApplicationController
 class ArticlesController < ApplicationController
   # We define methods within here to become the actions of the controller
-  
+  # index always first
+  def index
+    @articles = Article.all
+  end
+
   def show
     @article = Article.find(params[:id])
   end
