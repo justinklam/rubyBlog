@@ -11,22 +11,23 @@ class ArticlesController < ApplicationController
   end
  
   def new
+    @article = Article.new
   end
 
   def create
-    # render taking in hash of plain and value of params[:article].inspect
-    # params method is the object which represents the parameters(or fields) coming in from the form ie. actual username/email
-
-    # require/permit to prevent wrongful assignment
-    @article = Article.new(params.require(:article).permit(:title, :text))
-     
-    # save to db
-    @article.save
-    redirect_to @article  
+    @article = Article.new(article_params)
+   
+    if @article.save
+      redirect_to @article
+    else
+      # render so it doesn't reload like redirect
+      render 'new'
+    end
   end
 
   private
     def article_params
+      # require/permit to prevent wrongful assignment
       params.require(:article).permit(:title, :text)
     end
 
