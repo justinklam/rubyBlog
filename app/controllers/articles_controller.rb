@@ -1,6 +1,10 @@
 # Controller - class that is defined to inherit from ApplicationController
 class ArticlesController < ApplicationController
   # We define methods within here to become the actions of the controller
+
+  # user will be authenticated everywhere except index/show
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+
   # index always first
   def index
     @articles = Article.all
