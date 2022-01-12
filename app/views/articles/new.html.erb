@@ -1,7 +1,8 @@
 <h1>New Article</h1>
 
-<%= form_for :article do |f| %>
-  <p>
+<%# when form_for is called, it's passing :article %>
+<%= form_for :article, url: articles_path do |f| %>  
+<p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </p>
