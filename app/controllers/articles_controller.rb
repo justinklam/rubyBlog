@@ -2,6 +2,10 @@
 class ArticlesController < ApplicationController
   # We define methods within here to become the actions of the controller
   
+  def show
+    @article = Article.find(params[:id])
+  end
+ 
   def new
   end
 
